@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>digiCard gallery editor</title>
+    <link src="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="flex">
+        <div class="item">
+            <h2>What they will see:</h2>
+            <div id="pseudobody">
+                <div id="textcontainer">
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa quibusdam cum et sunt ex quos dolore accusamus minus ullam repudiandae</p>
+                    <p id="amountofpics">0</p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <h2>customisation:</h2>
+            <div id="customisation">
+                <h4>Images:</h4>
+                <input id="fileinput" type="file" multiple>
+                <h4>Text</h4>
+                <textarea id="text" placeholder="write something meaningful"></textarea>
+                <h4>Image options:</h4>
+                <button id="stagger">Stagger rows</button>
+                <h5>image speed</h5>
+                <button id="differentspeeds">different speeds</button>
+                <h6>minimum speed</h6>
+                <input id="speed2" type="range">
+                <h6>maximum speed</h6>
+                <input id="speed1" type="range">
+                <h4>Image size</h4>
+                <input type="text" id="imgsize">
+
+            </div>
+        </div>
+    </div>
+     
+    <script src="script.js"></script>
+</body>
+</html>
