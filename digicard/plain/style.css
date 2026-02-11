@@ -114,17 +114,9 @@ button:hover {
 }
 
 button:active {
-    transform: translateY(0);
+    transform: translateY(2px);
 }
 
-input[type='button']{
-    border-radius: 15px;
-    padding: 10px 20px;
-    background-color: #bac4ff;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
 input[type='text']{
     border-radius: 15px;
     border: none;
