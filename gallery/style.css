@@ -75,8 +75,18 @@ input[type="file"]::file-selector-button {
   border: none;
   border-radius: 15px;
   color: #cbdfee;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
 
-}   
+input[type="file"]::file-selector-button:hover{
+  background-color: #7700ff;
+  transform: translateY(-2px);
+}
+
+input[type="file"]::file-selector-button:active{
+  transform: translateY(2px);
+}
 img{
   height: 100px;
   width: 100px;

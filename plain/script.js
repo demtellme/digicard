@@ -8,21 +8,6 @@ let containercolour = document.getElementById('textcontainercolour').value || 'w
 let currentBgType = 'colour';
 
 form.addEventListener('change', function(event){
-    if (event.target.id == 'bgprimary'){
-        colour1 = event.target.value;
-        updateBackground();
-        if (textcontainer.classList.contains('glass')){
-            textcontainer.style.color = checkdarkness(colour1)
-        }
-    }
-    if (event.target.id == 'bgsecondary'){
-        colour2 = event.target.value;
-        updateBackground();
-    }
-    if (event.target.id == 'textcontainercolour'){
-        textcontainer.style.background = event.target.value;
-        textcontainer.style.color = checkdarkness(event.target.value);
-    }
    if (event.target.id == 'photo'){
     photo = true;
     const file = event.target.files[0];
@@ -44,6 +29,21 @@ form.addEventListener('input', function(event){
     if (event.target.id == 'text'){
         let text = event.target.value;
         textcontainer.querySelector('p').textContent = text;
+    }
+    if (event.target.id == 'bgprimary'){
+        colour1 = event.target.value;
+        updateBackground();
+        if (textcontainer.classList.contains('glass')){
+            textcontainer.style.color = checkdarkness(colour1)
+        }
+    }
+    if (event.target.id == 'bgsecondary'){
+        colour2 = event.target.value;
+        updateBackground();
+    }
+    if (event.target.id == 'textcontainercolour'){
+        textcontainer.style.background = event.target.value;
+        textcontainer.style.color = checkdarkness(event.target.value);
     }
 })
 function updateBackground() {
