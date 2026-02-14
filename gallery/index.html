@@ -16,13 +16,14 @@
                 </div>
                 <div id="carousel">
                     <div class="group"></div>
+                    <div class="group" aria-hidden="true"></div>
                 </div>
             </div>
         </div>
         <div class="item" id="right">
             <h2>customisation:</h2>
 
-            <h4>Images:</h4>
+            <h4>Background Images:</h4>
             <input id="fileinput" type="file" multiple>
 
             <h4>Text</h4>
@@ -43,10 +44,11 @@
             <input id='speed1' class="speed1 hidden" type="range">
 
             <h4>Image size</h4>
-            <input type="range" id="imgsize">
+            <input type="range" min="10" max="100" value="50s" id="imgsize">
 
             <h4>File Options</h4>
             <button onclick="generatedigicard('preview')">Preview</button>
+            <p>Aleways preview before commiting to an idea, it may look differently to the window on the left</p>
             <button onclick="generatedigicard('download')">Download HTML</button>
         </div>
     </div>
