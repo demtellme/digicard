@@ -3,6 +3,7 @@ const carousel = document.getElementById('carousel');
 // const animation = document.getElementsByClassName('group').getAnimations()[0];
 
 let difspeeds = false;
+let shuffleimgs = false;
 
 let minspeed = 0;
 let maxspeed = 0;
@@ -36,7 +37,7 @@ document.addEventListener('input', function(event){
     else if (event.target.id == 'speed1'){
         const displayspeed = document.getElementById('speed1value');
         displayspeed.innerHTML = event.target.value;
-        // groups.forEach(group => group.style.animationSpeed = `${speed1/5}s`)
+        groups.forEach(group => group.style.animationDuration = `${speed1/5}s`)
     }
     else if (event.target.id == 'imgsize'){
         imgsize = event.target.value * 2 ;
@@ -78,40 +79,58 @@ function hidewhendifspeeds(){
 
 }
 
-function shuffleimages(){
-    for (let i = images.length;  i > 0; i--){
+function shuffle(array){
+    for (let i = array.length;  i > 0; i--){
         const j = Math.floor(Math.random() * (i + 1));
-        [images[i], images[j]] = [images[j], images[i]];
+        [array[i], array[j]] = [array[j], array[i]];
     }
-    return images
+    return array
 }
 
 function cleargroups(){let groups = document.querySelectorAll('.group'); groups.forEach(group => group.remove());}
 
+function shufflepressed(){shuffleimgs = !shuffleimgs;}
+
 function getpossiblerows(imgsize){
-    pseudoheight = pseudobody.offsetHeight;
-    rows = Math.ceil(pseudoheight / imgsize);
-    return rows;
+    let pseudoheight = pseudobody.offsetHeight;
+    return Number (rows = Math.ceil(pseudoheight / imgsize));
+}
+function getminimumcolums(imgsize){
+    let pseudowidth = pseudobody.offsetWidth;
+    return Number (columns = Math.ceil(pseudowidth/imgsize));
 }
 
 function updategroups(imgsize){
     let currentgroups = document.querySelectorAll('.group').length;
     let rows = getpossiblerows(imgsize);
 
-    if (rows > currentgroups){
-        while (rows != currentgroups){
-            const grouptomake = document.createElement('div');
-            grouptomake.classList.add('group');
-            carousel.appendChild(grouptomake);
-            currentgroups ++;
+    while (rows != currentgroups){
+        if (rows > currentgroups){
+                const grouptomake = document.createElement('div');
+                grouptomake.classList.add('group');
+                carousel.appendChild(grouptomake);
+                currentgroups ++;
+        }
+        else if (rows < currentgroups){
+                const groups = document.querySelectorAll('.group');
+                groups[groups.length - 1].remove();
+                currentgroups --;
         }
     }
-    else if (rows < currentgroups){
-        while (rows != currentgroups){
-            const groups = document.querySelectorAll('.group');
-            groups[groups.length - 1].remove();
-            currentgroups --;
+    if (shufflepressed){
+        const rowimgs = shuffle(images.slice());
+    }
+    else{
+        const rowimgs = images;
+    }
+    let rowImgs = images;
+
+    if (getminimumcolums(imgsize) > images.length){
+        let timestodupeimages = getminimumcolums(imgsize) / images.length;
+        for (let i = 0;i < timestodupeimages; i++){
+            let fullList = rowImgs.concat(rowImgs);
         }
+        console.log(fullList);
     }
 
     console.log('groups updated');
@@ -120,20 +139,7 @@ function updategroups(imgsize){
 function populategroups(images, imgsize){
     let groups = document.querySelectorAll('.group');
 
-    groups.forEach(group => group.style.opacity = '0');
-    
-    let loadedCount = 0;
-    let totalImages = groups.length * images.length;
-    
-    function checkAllLoaded() {
-        loadedCount++;
-        if (loadedCount === totalImages) {
-            groups.forEach(group => group.style.opacity = '1');
-        }
-    }
-    
     for (let group of groups){
-
         group.innerHTML = '';
         for (let i=0; i < images.length; i++){
             const img = document.createElement('img');
@@ -142,7 +148,6 @@ function populategroups(images, imgsize){
             img.style.height = `${imgsize}px`;
             img.style.width = `${imgsize}px`;
 
-            img.onload = checkAllLoaded;
             group.appendChild(img);
         }
     }
