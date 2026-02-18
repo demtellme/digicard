@@ -15,7 +15,7 @@
                     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa quibusdam cum et sunt ex quos dolore accusamus minus ullam repudiandae</p>
                 </div>
                 <div id="carousel">
-                    <div class="group"></div>
+                    <div id="group" class="group"></div>
                     <div class="group" aria-hidden="true"></div>
                 </div>
             </div>
@@ -30,18 +30,19 @@
             <textarea id="text" placeholder="write something meaningful"></textarea>
 
             <h4>Image options:</h4>
-            <button>Stagger rows</button>
-            <button onclick="shuffledressed()">Shuffle images</button>
+            <!-- <button>Stagger rows</button> -->
+            <button onclick="shufflepressed()" id="shuffle">Shuffle images</button>
+            <button id="reverse" onclick="reversepressed()">Allow reverse direction</button>
 
-            <h5>image speed</h5>
-            <button id="differentspeeds" onclick="hidewhendifspeeds()">different speeds</button>
-            <h4 id="minspeed">speed</h4>
+            <!-- <h5>image speed</h5> -->
+            <!-- <button id="differentspeeds" onclick="hidewhendifspeeds()">random speeds</button> -->
+            <!-- <h4 id="minspeed">speed</h4>
             <p id="speedvalue"></p>
-            <input id="speed" type="range">
+            <input id="speed" type="range"> -->
 
-            <h4 class="speed1 hidden">maximum speed</h4>
+            <!-- <h4 class="speed1 hidden">maximum speed</h4>
             <p id="speed1value" class="speed1 hidden"></p>
-            <input id='speed1' class="speed1 hidden" type="range">
+            <input id='speed1' class="speed1 hidden" type="range"> -->
 
             <h4>Image size</h4>
             <input type="range" min="10" max="100" value="50s" id="imgsize">

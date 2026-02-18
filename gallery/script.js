@@ -1,31 +1,32 @@
 const pseudobody = document.getElementById('pseudobody');
 const carousel = document.getElementById('carousel');
-// const animation = document.getElementsByClassName('group').getAnimations()[0];
+const group = document.getElementById('group');
 
 let difspeeds = false;
 let shuffleimgs = false;
+let reverseallowed = false;
 
 let minspeed = 0;
 let maxspeed = 0;
+
+let imgspeed = 10;
 let imgsize = 100;
 
 let images = [];
+let imagesadded = [];
 
 document.addEventListener('input', function(event){
     if (event.target.id == 'fileinput'){
         for (let file of event.target.files){
             const url = URL.createObjectURL(file);
             images.push(url);
-            for (let group of document.querySelectorAll('.group')){
-                let img = document.createElement('img');
-                img.src = url
-                group.append(img)
 
-                populategroups(images, imgsize)
-            
-            }
+            updategroup(imgsize);
+            clonegroup(getpossiblerows(imgsize));
+
         }
     }
+
     else if (event.target.id == 'text'){
         const text = document.getElementById('textcontainer').querySelector('p')
         text.innerHTML = event.target.value;
@@ -33,18 +34,19 @@ document.addEventListener('input', function(event){
     else if (event.target.id == 'speed'){
         const displayspeed = document.getElementById('speedvalue');
         displayspeed.innerHTML = event.target.value;
+        if (!difspeeds){
+            groups.forEach(group => group.style.animationDuration = `${speed1/5}s`)
+        }
     }
     else if (event.target.id == 'speed1'){
         const displayspeed = document.getElementById('speed1value');
         displayspeed.innerHTML = event.target.value;
-        groups.forEach(group => group.style.animationDuration = `${speed1/5}s`)
+        
     }
     else if (event.target.id == 'imgsize'){
         imgsize = event.target.value * 2 ;
 
-        updategroups(imgsize);
-        populategroups(images, imgsize);
-
+        clonegroup(getpossiblerows(imgsize));
 
         for (let img of document.querySelectorAll('img')){
             img.style.height = `${imgsize}px`;
@@ -89,7 +91,33 @@ function shuffle(array){
 
 function cleargroups(){let groups = document.querySelectorAll('.group'); groups.forEach(group => group.remove());}
 
-function shufflepressed(){shuffleimgs = !shuffleimgs;}
+function shufflepressed(){
+    shuffleimgs = !shuffleimgs;
+
+    let shufflebutton = document.getElementById('shuffle');
+    if (shuffleimgs){
+        shufflebutton.style.transform = 'translateY(5px)';
+        shufflebutton.style.backgroundColor = '#00359e';
+    }
+    else{
+        shufflebutton.style.backgroundColor = '#014add';
+        shufflebutton.style.transform = 'translateY(-5px)';
+    }
+}
+function reversepressed(){
+    reverseallowed = !reverseallowed;
+
+    let reversebutton = document.getElementById('reverse');
+    if (reverseallowed){
+        reversebutton.style.transform = 'translateY(5px)';
+        reversebutton.style.backgroundColor = '#00359e';
+    }
+    else{
+        reversebutton.style.backgroundColor = '#014add';
+        reversebutton.style.transform = 'translateY(-5px)';
+    }
+}
+
 
 function getpossiblerows(imgsize){
     let pseudoheight = pseudobody.offsetHeight;
@@ -100,61 +128,46 @@ function getminimumcolums(imgsize){
     return Number (columns = Math.ceil(pseudowidth/imgsize));
 }
 
-function updategroups(imgsize){
-    let currentgroups = document.querySelectorAll('.group').length;
-    let rows = getpossiblerows(imgsize);
-
-    while (rows != currentgroups){
-        if (rows > currentgroups){
-                const grouptomake = document.createElement('div');
-                grouptomake.classList.add('group');
-                carousel.appendChild(grouptomake);
-                currentgroups ++;
-        }
-        else if (rows < currentgroups){
-                const groups = document.querySelectorAll('.group');
-                groups[groups.length - 1].remove();
-                currentgroups --;
-        }
-    }
-    if (shufflepressed){
-        const rowimgs = shuffle(images.slice());
-    }
-    else{
-        const rowimgs = images;
-    }
-    let rowImgs = images;
-
-    if (getminimumcolums(imgsize) > images.length){
-        let timestodupeimages = getminimumcolums(imgsize) / images.length;
-        for (let i = 0;i < timestodupeimages; i++){
-            let fullList = rowImgs.concat(rowImgs);
-        }
-        console.log(fullList);
-    }
-
-    console.log('groups updated');
-}
-
-function populategroups(images, imgsize){
-    let groups = document.querySelectorAll('.group');
-
-    for (let group of groups){
-        group.innerHTML = '';
-        for (let i=0; i < images.length; i++){
-            const img = document.createElement('img');
-            img.src = images[i];
-
-            img.style.height = `${imgsize}px`;
-            img.style.width = `${imgsize}px`;
-
-            group.appendChild(img);
-        }
-    }
-}
 
 function updateimgspeed(){
-    return 
+    if (difspeeds){
+        return Math.floor(Math.random(max - min + 1)) + minspeed;
+    }
+    else{
+        return imgspeed;
+    }
+}
+
+function updategroup(imgsize){
+    let workingImages = images; 
+    if (shuffleimgs){
+        workingImages = shuffle([...images]);
+    }
+    let timestodupe = Math.floor(getminimumcolums(imgsize) / workingImages.length)+1;
+    let imagestoadd = [];
+    for (let i = 0; i < timestodupe; i++){
+        imagestoadd = imagestoadd.concat(workingImages);
+    }
+
+    imagestoadd.forEach(src =>{
+        const img = document.createElement('img');
+        img.src = src;
+        group.appendChild(img);
+    });
+}
+
+function clonegroup(times){
+    let clones = document.querySelectorAll('.clone');
+    clones.forEach(clone => clone.remove());
+
+    for (let i = 0; i < times; i++){
+        const clone = group.cloneNode(true);
+        clone.classList.add('clone');
+        carousel.appendChild(clone);
+        if (reverseallowed){
+            if (Math.random() < 0.5) clone.style.animationDirection = "reverse";
+        }
+    }
 }
 function generatedigicard(vector){
     let newDoc = document.implementation.createHTMLDocument('DigiCard - gallery');
@@ -171,9 +184,16 @@ function generatedigicard(vector){
             color: white;
         }
         body {
-            ${pseudobody.style.cssText}
             margin: 0;
+            background-color: rgb(62, 62, 136);
+            height: 100vh;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+            position: relative; 
         }
+        
 
         #textcontainer {
             border-radius: 15px;
@@ -248,7 +268,7 @@ function generatedigicard(vector){
     weblink.href = 'https://digicardmaker.netlify.app/';
     weblink.textContent = 'Made with Digicard, click here for more';
 
-    weblink.style.color = 'black';
+    weblink.style.color = 'white';
     weblink.style.fontSize = '10px';
     weblink.style.textDecoration = 'none';
     weblink.style.position = 'absolute';
@@ -279,6 +299,3 @@ function generatedigicard(vector){
         setTimeout(() => URL.revokeObjectURL(url), 1000);
    }
 }
-
-
-updategroups(imgsize);
