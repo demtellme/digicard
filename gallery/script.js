@@ -106,15 +106,21 @@ function shufflepressed(){
 }
 function reversepressed(){
     reverseallowed = !reverseallowed;
+    var rows = document.querySelectorAll('.group');
+    
 
     let reversebutton = document.getElementById('reverse');
     if (reverseallowed){
         reversebutton.style.transform = 'translateY(5px)';
         reversebutton.style.backgroundColor = '#00359e';
+        for (let row of rows){
+            if (Math.random() < 0.5) row.style.animationDirection = "reverse";
+        }
     }
     else{
         reversebutton.style.backgroundColor = '#014add';
         reversebutton.style.transform = 'translateY(-5px)';
+        rows.forEach(row => row.style.animationDirection = "normal");
     }
 }
 
