@@ -30,27 +30,24 @@
             <textarea id="text" placeholder="write something meaningful"></textarea>
 
             <h4>Image options:</h4>
-            <!-- <button>Stagger rows</button> -->
-            <button onclick="shufflepressed()" id="shuffle">Shuffle images</button>
-            <button id="reverse" onclick="reversepressed()">Allow reverse direction</button>
+            <button onclick="shufflepressed()" id="shuffle">Shuffle Images</button>
+            <button id="reverse" onclick="reversepressed()">Allow Reverse Direction</button>
 
-            <!-- <h5>image speed</h5> -->
-            <!-- <button id="differentspeeds" onclick="hidewhendifspeeds()">random speeds</button> -->
-            <!-- <h4 id="minspeed">speed</h4>
-            <p id="speedvalue"></p>
-            <input id="speed" type="range"> -->
+            <h5>image speed</h5>
+            <button id="differentspeeds" onclick="randomspeedspressed()">Allow Random Speeds</button>
+            <h4 id="minspeed">speed</h4>
+            <input id="speed" type="range">
 
-            <!-- <h4 class="speed1 hidden">maximum speed</h4>
-            <p id="speed1value" class="speed1 hidden"></p>
-            <input id='speed1' class="speed1 hidden" type="range"> -->
+            <h4 class="speed1 hidden">maximum speed</h4>
+            <input id='speed1' class="speed1 hidden" type="range">
 
             <h4>Image size</h4>
-            <input type="range" min="10" max="100" value="50s" id="imgsize">
+            <input type="range" min="10" max="100" value="50" id="imgsize">
 
             <h4>File Options</h4>
-            <button onclick="generatedigicard('preview')">Preview</button>
+            <button onclick="generatedigicard('preview')">Preview digiCard</button>
             <p>Aleways preview before commiting to an idea, it may look differently to the window on the left</p>
-            <button onclick="generatedigicard('download')">Download HTML</button>
+            <button onclick="generatedigicard('download')">Download digiCard HTML</button>
         </div>
     </div>
      

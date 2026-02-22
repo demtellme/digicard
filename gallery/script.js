@@ -6,14 +6,13 @@ let difspeeds = false;
 let shuffleimgs = false;
 let reverseallowed = false;
 
-let minspeed = 0;
-let maxspeed = 0;
+let minspeed = 50;
+let maxspeed = 50;
 
 let imgspeed = 10;
 let imgsize = 100;
 
 let images = [];
-let imagesadded = [];
 
 document.addEventListener('input', function(event){
     if (event.target.id == 'fileinput'){
@@ -21,7 +20,7 @@ document.addEventListener('input', function(event){
             const url = URL.createObjectURL(file);
             images.push(url);
 
-            updategroup(imgsize);
+            updateimages(imgsize);
             clonegroup(getpossiblerows(imgsize));
 
         }
@@ -32,16 +31,13 @@ document.addEventListener('input', function(event){
         text.innerHTML = event.target.value;
     }
     else if (event.target.id == 'speed'){
-        const displayspeed = document.getElementById('speedvalue');
-        displayspeed.innerHTML = event.target.value;
-        if (!difspeeds){
-            groups.forEach(group => group.style.animationDuration = `${speed1/5}s`)
-        }
+        minspeed = event.target.value;
+        updatespeed(minspeed);
+
     }
     else if (event.target.id == 'speed1'){
-        const displayspeed = document.getElementById('speed1value');
-        displayspeed.innerHTML = event.target.value;
-        
+        maxspeed = event.target.value /10;
+        updatespeed(minspeed,maxspeed)        
     }
     else if (event.target.id == 'imgsize'){
         imgsize = event.target.value * 2 ;
@@ -56,15 +52,32 @@ document.addEventListener('input', function(event){
 
 })
 
-function hidewhendifspeeds(){
-    if (difspeeds == false){
-        difspeeds = true;
+function shuffle(array){
+    for (let i = array.length;  i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array
+}
+
+function randomspeedspressed(){
+    difspeeds = !difspeeds;
+
+    difspeedsbutton = document.getElementById('differentspeeds');
+    rows = document.querySelectorAll('.group');
+
+    if (difspeeds){
+        difspeedsbutton.style.transform = 'translateY(5px)';
+        difspeedsbutton.style.backgroundColor = '#00359e';
+        updatespeed(minspeed, maxspeed);
     }
     else{
-        difspeeds = false;
+        difspeedsbutton.style.backgroundColor = '#014add';
+        difspeedsbutton.style.transform = 'translateY(-5px)';
+        rows.forEach(row => row.style.animationDuration = `${300/minspeed}s`);
     }
-    let speedtext = document.getElementById('minspeed');
 
+    let speedtext = document.getElementById('minspeed');
     if (speedtext.innerHTML == 'minimum speed'){
         speedtext.innerHTML = 'speed';
     }
@@ -80,28 +93,31 @@ function hidewhendifspeeds(){
     } 
 
 }
-
-function shuffle(array){
-    for (let i = array.length;  i > 0; i--){
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array
-}
-
-function cleargroups(){let groups = document.querySelectorAll('.group'); groups.forEach(group => group.remove());}
-
 function shufflepressed(){
     shuffleimgs = !shuffleimgs;
 
     let shufflebutton = document.getElementById('shuffle');
+    let rows = document.querySelectorAll('.group');
+
     if (shuffleimgs){
         shufflebutton.style.transform = 'translateY(5px)';
         shufflebutton.style.backgroundColor = '#00359e';
+        
+        rows.forEach(row => {
+            let rowimgs = Array.from(row.children);
+            for (let i = 0; i < rowimgs.length; i++) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [rowimgs[i], rowimgs[j]] = [rowimgs[j], rowimgs[i]];
+            }
+            rowimgs.forEach(img => row.appendChild(img));
+        })
     }
     else{
         shufflebutton.style.backgroundColor = '#014add';
         shufflebutton.style.transform = 'translateY(-5px)';
+
+        updateimages(images);
+        clonegroup(getpossiblerows(imgsize));
     }
 }
 function reversepressed(){
@@ -134,17 +150,7 @@ function getminimumcolums(imgsize){
     return Number (columns = Math.ceil(pseudowidth/imgsize));
 }
 
-
-function updateimgspeed(){
-    if (difspeeds){
-        return Math.floor(Math.random(max - min + 1)) + minspeed;
-    }
-    else{
-        return imgspeed;
-    }
-}
-
-function updategroup(imgsize){
+function updateimages(imgsize){
     let workingImages = images; 
     if (shuffleimgs){
         workingImages = shuffle([...images]);
@@ -161,6 +167,19 @@ function updategroup(imgsize){
         group.appendChild(img);
     });
 }
+function updatespeed(speed,speed1){
+    let rows = document.querySelectorAll('.group');
+    if (difspeeds){
+        rows.forEach(row =>{
+            let randNum =  speed + Math.random() * (speed1 - speed);
+            row.style.animationDuration = `${300/randNum}s`
+        })
+    }
+    else{
+        rows.forEach(row => row.style.animationDuration = `${300/speed}s`);
+    }
+}
+
 
 function clonegroup(times){
     let clones = document.querySelectorAll('.clone');
@@ -175,6 +194,8 @@ function clonegroup(times){
         }
     }
 }
+
+
 function generatedigicard(vector){
     let newDoc = document.implementation.createHTMLDocument('DigiCard - gallery');
 
@@ -281,6 +302,7 @@ function generatedigicard(vector){
     weblink.style.bottom = '20px';
     weblink.style.left = '50%';
     weblink.style.transform = 'translateX(-50%)';
+    weblink.style.zIndex = '1';
 
 
     newDoc.body.appendChild(weblink)
