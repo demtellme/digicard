@@ -1,11 +1,15 @@
 const pseudobody = document.getElementById('pseudobody');
 const textcontainer = document.getElementById('textcontainer');
 const form = document.getElementById('form');
-let colour1 = document.getElementById('bgprimary').value; 
+
+const gridbutton = document.getElementById('gridbutton');
+const gradientbutton = document.getElementById('gradientbutton');
+const colourbutton = document.getElementById('colourbutton');
+const bgbuttons = [gridbutton, gradientbutton, colourbutton];
+
+let colour1 = document.getElementById('bgprimary').value;
 let colour2 = document.getElementById('bgsecondary').value;
 let containercolour = document.getElementById('textcontainercolour').value || 'white';
-
-let currentBgType = 'colour';
 
 form.addEventListener('change', function(event){
    if (event.target.id == 'photo'){
@@ -46,14 +50,14 @@ form.addEventListener('input', function(event){
         textcontainer.style.color = checkdarkness(event.target.value);
     }
 })
-function updateBackground() {
+function updateBackground(currentBgType) {
     pseudobody.className = '';
     pseudobody.style.animation = '';
-    
+
     if (currentBgType === 'grid') {
         pseudobody.classList.add('grid');
         pseudobody.style.backgroundColor = colour1;
-        pseudobody.style.setProperty('--grid-color', colour2); 
+        pseudobody.style.setProperty('--grid-color', colour2);
         pseudobody.style.backgroundImage = `
             linear-gradient(var(--grid-color, ${colour2}) .1em, transparent .1em),
             linear-gradient(90deg, var(--grid-color, ${colour2}) .1em, transparent .1em)
@@ -76,38 +80,41 @@ function updateBackground() {
 }
 
 function checkdarkness(colour){
-    let hex = colour.replace('#', '');
-    if (hex.length === 3) {
-        hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
-    }
-    let r = parseInt(hex.substr(0, 2), 16);
-    let g = parseInt(hex.substr(2, 2), 16);
-    let b = parseInt(hex.substr(4, 2), 16);
-    
-    let brightness = (r * 0.299) + (g * 0.587) + (b * 0.114); 
+  let hex = colour.replace('#', '');
+  if (hex.length === 3) {
+      hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+  }
+  let r = parseInt(hex.substr(0, 2), 16);
+  let g = parseInt(hex.substr(2, 2), 16);
+  let b = parseInt(hex.substr(4, 2), 16);
 
-    return brightness < 128 ? 'white' : 'black';
+  let brightness = (r * 0.299) + (g * 0.587) + (b * 0.114);
+
+  return brightness < 128 ? 'white' : 'black';
 }
 
-function bgGrid(){
-    currentBgType = 'grid';
-    updateBackground();
+function bgTypeButtonPressed(type) {
+    const affectedbutton = document.getElementById(type + 'button');
+    bgbuttons.forEach(button => {
+        if (button != affectedbutton) {
+            button.style.transform = 'translateY(-5px)';
+            button.style.backgroundColor = '#014add';
+        }
+        else {
+            button.style.transform = 'translateY(5px)';
+            button.style.backgroundColor = '#00359e';
+        }
+    });
+    updateBackground(type);
 }
+bgTypeButtonPressed('colour')
 
-function bgColour(){
-    currentBgType = 'colour';
-    updateBackground();
-}
 
-function bgGradient(){
-    currentBgType = 'gradient';
-    updateBackground();
-}
-
-function toggleglass(){
+function toggleglass() {
+    const button = document.getElementById('glassbutton')
     const container = document.getElementById('textcontainer');
     const originalColor = container.getAttribute('data-original-color');
-    
+
     if (container.classList.contains('glass')){
         container.classList.remove('glass');
         if (originalColor) {
@@ -115,12 +122,16 @@ function toggleglass(){
         } else {
             container.style.background = 'blue';
         }
-        container.style.color = checkdarkness(container.style.backgroundColor || container.style.background || 'blue');
+        container.style.color = checkdarkness(container.style.backgroundColor || container.style.background || 'white');
+        button.style.transform = 'translateY(-5px)';
+        button.style.backgroundColor = '#014add';
     } else {
-        container.setAttribute('data-original-color', container.style.background || container.style.backgroundColor || 'blue');
+        container.setAttribute('data-original-color', container.style.background || container.style.backgroundColor || 'white');
         container.classList.add('glass');
         container.style.background = 'transparent';
         container.style.color = checkdarkness(colour1);
+        button.style.transform = 'translateY(5px)';
+        button.style.backgroundColor = '#00359e';
     }
 }
 
@@ -134,12 +145,12 @@ function generatedigicard(vector){
     newbody.innerHTML = pseudobody.innerHTML;
 
     const newPhoto = newbody.querySelector('#selectedphoto');
-    
+
     const originalPhoto = document.getElementById('selectedphoto');
     if (originalPhoto.classList.contains('invisible') && newPhoto) {
-        newPhoto.remove();  
+        newPhoto.remove();
     }
-    
+
 
     const style = newDoc.createElement('style');
     style.textContent = `
@@ -220,7 +231,7 @@ function generatedigicard(vector){
         const serialiser = new XMLSerializer();
         const content = serialiser.serializeToString(newDoc)
         const blob = new Blob([content], {type : 'text/html'});
-        const url = URL.createObjectURL(blob); 
+        const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
 
         a.href = url;
@@ -229,6 +240,4 @@ function generatedigicard(vector){
 
         setTimeout(() => URL.revokeObjectURL(url), 1000);
    }
-
-    
 }

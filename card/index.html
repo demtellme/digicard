@@ -4,10 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>digiCard card editor</title>
-    <link src="style.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
 </head>
 <body>
-    <p>Hello You</p>
-     <input type="file">
+    <div class="flex">
+        <div class="item" id="left">
+            <h2>What they will see:</h2>
+            <div id="pseudobody">
+
+        </div>
+        <div class="item" id="right">
+            <h2>customisation:</h2>
+
+            <h4>Pages</h4>
+            <input type="number" id="numberofpages">
+
+            <h4>File Options</h4>
+            <button onclick="generatedigicard('preview')">Preview digiCard</button>
+            <button onclick="generatedigicard('download')">Download digiCard HTML</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="turnjs4/jquery.min.1.7.js"></script>
+    <script src="turnjs4/jquery.mousewheel.min"></script>
+    <script src="turnjs4/turn.js"></script>
 </body>
 </html>

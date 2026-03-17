@@ -1,0 +1,100 @@
+TURN.JS COMMERCIAL LICENSE AGREEMENT
+
+By checking "I Agree" during the online purchase, or by downloading, or by using the Software, you represent that you have read, understand and agree to be bound by the terms and conditions of this Turn.js Commercial License Agreement. If you do not accept these terms and conditions then you are not granted a license and are not authorized to access, download, modify or use the Software.
+
+TERMS & CONDITIONS
+
+1. DEFINITIONS
+
+"Agreement" or "license" - means all of the terms and conditions of this document.
+
+"Licensor" - means Emmanuel Garcia, creator of the Software.
+
+"Licensee" or "you" - means the associated organization or the individual who or entity that accepted and agreed to be bound by the terms and conditions of this Agreement.
+
+"Customer" - means the entity or organization that Licensee delivers products to or delivers technology demonstrations as sponsored by such entity.
+
+"Software" - means the development and producer versions of turn.js fourth release and all of the code, documentation, and copyrighted material within.
+
+"Developer(s)" - means the individual(s) associated with the Licensee and on whose behalf the Licensee has accepted to be bound to this Agreement for which the Software may be downloaded, modified, used, referenced or developed with.
+
+"Product(s)" - means software or other technical system that incorporates the Turn.js 4th release package as part of its operation, which is made by the Licensee and intended for but not limited to internal use, demonstration, sale or distribution.
+
+"Updates" - means any downloaded, used, or referenced code changes, modifications, bug fixes, or improvements offered, communicated or delivered by the Licensor to the Licensee during the duration of this Agreement.
+
+"Domains" - means the domain name or subdomain in which the Software is accessible to Customers.
+
+"ULID" - means Unique License ID, which is an ID of six characters sent by the Licensor to the Licensee.
+
+2. SCOPE OF THE LICENSE
+
+2.1 Subject to the terms and conditions of this Agreement, Licensor hereby grants to Licensee a limited and non-exclusive right during the term of this Agreement and any renewals hereof to: (a) download the Software from the Turn.js Website; (b) install the Software on any domain for public or private access; (c) include copies of the Software
+as part of Products, and (c) support distributed versions of the Software that is part of Licensee Products. This license is subject to the additional conditions stated in this Agreement. Any agreement between the Licensee, on the one hand, and a Distributor, on the other, shall not grant to such Distributor license rights broader in scope than the license rights granted to Licensee under this Section 2.1, and shall include terms substantially similar to Section 2.2.
+
+2.2 In connection with the Products, Licensee shall not: (a) lease, license, use, make available or distribute all or any part of the Software to any third party, except as included in the Product; (b) use the Software to operate in or as a time-sharing, outsourcing, service bureau, application service provider or managed service provider environment, except as otherwise expressly agreed by the parties in a separate, signed writing that requires the payment of fees on a per-customer, per-user or per-access basis; (c) lease, license, use, make available or distribute the Software as a stand alone application or with applications other than a Product under this license; or (d) distribute Software pursuant to a public or open source license.
+
+2.3 Licensee agrees to (a) require each Distributor of a Product to agree to protect the Software under substantially similar terms and conditions as Licensee is hereby agreeing; and (b) enforce its agreements with Distributors in response to breaches of Distributors' obligations under such agreements with respect to the protection of Software as set forth above. In the event Licensee learns that a Distributor has failed to take steps required under subpart (a) above, or Licensee has taken enforcement steps in accordance with subpart (b) above, Licensee shall promptly inform Licensor.
+
+3. Authorized Development Activities
+
+The Software is licensed only for the specific development activities below.
+
+3.1 Licensee is permitted to use Software on unlimited Domains for the purpose of software development, use and referencing. If use of the Domains is to be shared with other individuals, they are not permitted to use the Software unless Licensee has purchased a copy of this development license (or an equivalent development license) from the Licensor for those individuals separately.
+
+3.2 The Developer may use the Software on unlimited Domains providing the ULID have been inserted at the beginning of the Source Code.
+
+3.3 The Developer may modify the Software source code by making changes, additions or removing from the Software in any form. Any changes made to the Software source code are the property of Licensee. However making changes to the Software does not give the Licensee the right to distribute the derivative work as new software unbound by this license. Any and all source code of the License Software as originally supplied by the Licensor remains subject to the terms of this Agreement.
+
+4. Prohibited Activities
+
+The Licensee shall not perform nor authorize others to perform any of the activities given in the following sections below.
+
+4.1 The Licensee shall not allow multiple developers to share the license rights entitled to the Developer(s) for whom this license has been purchased and this Agreement made. This includes but is not limited to sharing Software Updates with other developers that have a Software developers license but for whom the required Update and Support fees have not been paid for.
+
+4.2 The Licensee may not pursue any formal qualification, certification, or designation for the Software unless it is for a specific end user system for which it is part or unless the Licensor has provided written consent for such activity.
+
+5. Intellectual Property Rights
+
+The Software is licensed, not sold. The Licensor retains all right, title and interest in and to the Software and all copies thereof and in all related copyrights, trade secrets, trademarks and any other intellectual property rights embodied therein or used in association with the Software.
+
+6. Price and Payment
+
+6.1 The Licensee shall pay all fees, charges and applicable taxes.
+
+6.2 Failure to pay any of the fees or charges will result in immediate termination of this license and the immediate termination of any and all rights this licence Agreement affirms to the Licensee. Any and all copies of the Software downloaded by the Licensee or Developer must immediately be removed from any Machines for which a valid developer license does not exist as defined under section 3 of this Agreement.
+
+7. Disclaimer of Warranties and Limitation of Liability
+THE SOFTWARE IS PROVIDED BY THE LICENSOR "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE LICENSOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THE SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. THE LICENSOR DOES NOT WARRANT THAT THE LICENSED SOFTWARE WILL MEET LICENSEE'S REQUIREMENTS OR THAT THE OPERATION OF THE LICENSED SOFTWARE WILL BE UNINTERRUPTED OR ERROR-FREE, OR THAT ERRORS IN THE LICENSED SOFTWARE WILL BE CORRECTED. THIS SECTION 8 OF THIS AGREEMENT WILL SURVIVE ITS EXPIRATION OR TERMINATION AND WILL APPLY NOTWITHSTANDING THE FAILURE OF THE ESSENTIAL PURPOSE OF ANY OF ITS TERMS AND CONDITIONS.
+
+Without limiting the generality or terms of the foregoing disclaimer, the Licensee acknowledges that the Software is not specifically designed, manufactured or intended for use in the planning, construction, maintenance, control or direct operation of any high-risk systems including but not limited to nuclear facilities, aircraft navigation, flight control or flight communication, mass transit, weapons or direct life support systems.
+
+8. United States Government Rights
+
+If the Licensee is a U.S. government or quasi- government entity, then the Licensee acknowledges that the Software is a "commercial item", as that term is defined in 48 C.F.R. 2.101 (Oct. 1995), consisting of "commercial computer software" and "commercial computer software documentation", as such terms are used in 48 C.F.R. 12.1212 (Sept. 1995). Consistent with 48 C.F.R. 12.1212 and 48 C.F.R. 227.7202-1 through 227.7202-4 (June 1995), all such customers acquire the Software with only those rights set forth herein. Use, duplication, or disclosure by the U.S. government is subject to restrictions as provided in DFARS 227.7202-1(a) and 227.7202-3(a) (1995), DFARS 252.227-7013 (c)(1)(ii) (OCT 1988), FAR 12.212(a)(1995), FAR 52.227-19, or FAR 52.227-14 (ALT III), as applicable.
+
+9. Ownership of Feedback Information
+
+For all communication between the Licensor and Licensee, which may include but is not limited to email, voice, or website forum discussion, the property rights to information regarding the Software shall adhere to the terms given in this section below.
+
+9.1 The Licensor shall have the right to own, sell and distribute any changes made to the Software as a result of communications from the Licensee including but not limited to recommendations, complaints, bug-fixes or feature requests.
+9.2 The Licensor shall have the right to own, sell and distribute any modifications, improvements of other changes to the Software made by Licensee that are transferred or directly communicated to the Licensor.
+
+10. Support
+
+The terms of support shall be made available to the Licensee for a period of six months from the date of the online purchase.
+
+10.1 Updates: The during the period of support the Licensee is entitled to any updates, modifications or bug fixes that are made available in that period. These modifications will be made available for online download to the Licensee and the Licensee will be notified of such modifications when they are available through email contact to the Developer(s).
+
+10.2 Direct Support and Limitations: The Licensee is entitled to a limited amount of direct support for any questions, issues or other informational requirements that need to be addressed with respect to the Software during the period of support. The direct support will be made available to the Licensee via email or telephone communication.
+
+10.3 Renewal of support: During the support, the Licensee will have the opportunity to purchase a renewal of support. The price of renewal will be determined at the time of purchase. The Licensor has the right to modify the terms of support offered in the renewal and therefore the renewed terms may not be the same terms offered in this Agreement.
+
+11. Governing Law
+
+11.1 This Agreement shall be governed by the laws of the State of Ohio, United States, without regard to the conflict of laws provision thereof. Under no condition or event shall the United Nations Convention on Contracts for the International Sale of Goods nor any adopted version of the Uniform Computer Information Transactions Act apply to, or govern, this Agreement. In the event that either Licensor or Licensee initiates an action in regards to this Agreement or other dispute between the Licensor and Licensee, the exclusive location and jurisdiction of such action shall be in the state and courts of Ohio.
+
+11.2 The Licensee shall comply at its own expense the applicable laws related to the terms and conditions of this Agreement, and the use of the Software.
+
+12. Entire Agreement
+
+This Agreement is the entire agreement between the Licensee and the Licensor with respect to the Software and its support and they supersede all prior oral or written communications, advising, proposals or representations with respect to the Software or any other terms or conditions of this Agreement. If any terms or conditions of this Agreement are found to be void, invalid, unenforceable or illegal, the other terms or conditions of this Agreement shall continue to apply to the Software.

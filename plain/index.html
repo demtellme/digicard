@@ -28,9 +28,9 @@
                 <textarea id="text" rows="4" cols="40" placeholder="Write something meaningful!"></textarea>
 
                 <h4>Background Type</h4>
-                <button type="button" onclick="bgGrid()">Grid</button>
-                <button type="button" onclick="bgGradient()">Gradient</button>
-                <button type="button" onclick="bgColour()">Colour</button>
+                <button type="button" onclick="bgTypeButtonPressed('grid')" id="gridbutton">Grid</button>
+                <button type="button" onclick="bgTypeButtonPressed('gradient')" id="gradientbutton">Gradient</button>
+                <button type="button" onclick="bgTypeButtonPressed('colour')" id="colourbutton">Colour</button>
 
                 <h5>Background colours</h5>
                 <h10>primary</h10>
@@ -39,14 +39,13 @@
                 <input id="bgsecondary" class="bgsecondary" type="color">
 
                 <h4>text container</h4>
-                <button type="button" onclick="toggleglass()">Toggle Glass</button>
+                <button type="button" onclick="toggleglass()" id="glassbutton">Toggle Glass</button>
                 <h10>colour</h10>
                 <input type="color" id="textcontainercolour">
-                
+
                 <h4>Preview/Download Html</h4>
                 <button onclick="generatedigicard('preview')">Preview in new window</button>
                 <button onclick="generatedigicard('download')">Download html</button>
-                <!-- <button onclick="generatedigicard('netlify')">Deploy with Netlify</button> -->
                 <a href="https://youtu.be/9srnyNC1e_o?si=v_Tk3HDo21m-cKt0" target="_blank"><h4>How to upload with netlify</h4></a>
                 <h5>On a phone, Save the html to files and select it when asked to drag and drop</h5>
                 <h5>(or you can send it to your person on whatsapp or another way that lets them see files)</h5>
